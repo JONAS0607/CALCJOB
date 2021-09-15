@@ -1,0 +1,27 @@
+{
+  "name": "calcjob",
+  "version": "1.0.0",
+  "description": "Freelance pessoal Calculator",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JONAS0607/CALCJOB.git"
+  },
+  "keywords": [],
+  "author": "Jonas Pedroso Cabral",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JONAS0607/CALCJOB/issues"
+  },
+  "homepage": "https://github.com/JONAS0607/CALCJOB#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
