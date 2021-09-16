@@ -105,21 +105,21 @@
 - [x] mostrando index.html
 - [x] views directory `criamos uma pasta e passamos todos os arquivos html para ela`
 - [x] public directory `criamos um diretório public e passamos os arquivos estáticos ou seja que não vão ser alterados com frequência para ela, ex : css imgs`
-- [] create routes.js
-  - [] module.exports
-- [] fix
-  - [] file paths
-  - [] href
-- [] template engine
-- [] Benefício 1: reutilizar componentes (header)
-  - [] instalar ejs
-  - [] transformar .html em .ejs
-  - [] `<%- include('parts/page-header', { title: 'Meu Perfil'}) %>`
-  - [] install ejs plugin
-- [] Benefício 2: Programar no HTML
-  - [] variáveis
-  - [] criar o objeto do perfil de usuário
-  - [] passar o objeto do perfil de usuário para o profile.ejs
+- [x] create routes.js
+  - [x] module.exports
+- [x] fix
+  - [x] file paths
+  - [x] href
+- [x] template engine `a template escolhida foi a ejs`
+- [x] Benefício 1: reutilizar componentes (header)
+  - [x] instalar ejs `npm i ejs `
+  - [x] transformar .html em .ejs
+  - [x] `<%- include('parts/page-header', { title: 'Meu Perfil'}) %>`
+  - [x] install ejs plugin
+- [x] Benefício 2: Programar no HTML
+  - [x] variáveis
+  - [x] criar o objeto do perfil de usuário
+  - [x] passar o objeto do perfil de usuário para o profile.ejs
 
 # Recap
 
