@@ -149,24 +149,32 @@
 
 ## Salvar Job
 
-    * [x] Form job
-    - [x] method post
-    - [x] action="/job"
-    * [x] rota /job POST
-    - [x] req.body
-    - [x] urlencoded
-    * [x] Criar array de jobs
-    - [] enviar para o index.ejs
-    - [] .forEach
-    - [] ajustes dos dados no index
-    * [] Configurar jobs na criação de um novo Job
-    - [] job id: pegar o id do ultimo item do array
-    - [] created_at: Date.now()
-      - [] para o cálculo de dias restantes
-    - [] total-hours
-    - [] daily-hours
-    - [] name
-    * [] Atualizar os jobs no index, antes de apresentar
+- [x] Form job
+
+  - [x] method post
+  - [x] action="/job"
+
+  * [x] rota /job POST
+
+  - [x] req.body
+  - [x] urlencoded
+
+  * [x] Criar array de jobs
+
+  - [x] enviar para o index.ejs
+  - [x] .forEach
+  - [] ajustes dos dados no index
+
+  * [x] Configurar jobs na criação de um novo Job
+
+  - [x] job id: pegar o id do ultimo item do array
+  - [x] created_at: Date.now()
+    - [x] para o cálculo de dias restantes
+  - [x] total-hours
+  - [x] daily-hours
+  - [x] name
+
+  * [x] Atualizar os jobs no index, antes de apresentar
 
 ## Remaining calculation
 
