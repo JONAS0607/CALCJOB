@@ -19,12 +19,13 @@ const Profile = {
     update(req, res) {
       //req.body para pegar os dados
       const data = req.body;
+
       // definir quantas semandas tem em um ano
       const weeksPerYear = 52;
       //remover as semanas de férias do ano, para pegar quantas semanas tem em 1 mês
       const weeksPerMonth = (weeksPerYear - data['vacation-per-year']) / 12;
       // quantas horas por semana estou trabalhando
-      const weekTotalHours = data['days-per-day'] * data['days-per-week'];
+      const weekTotalHours = data['hours-per-day'] * data['days-per-week'];
       // total de horas trabalhadas no mês
       const monthlyTotalHours = weekTotalHours * weeksPerMonth;
       // qual será o valor da minha hora
@@ -34,7 +35,9 @@ const Profile = {
         ...req.body,
         'value-hour': valueHour,
       };
-      return res.render('profile');
+      // TRAVEI AQUI NO REDIRECIONAMENTO : tinha uma variavel com a nomenclatura errada.
+
+      return res.render('profile', { profile: Profile.data });
     },
   },
 };
@@ -47,6 +50,7 @@ const Job = {
       'daily-hours': 1,
       'total-hours': 10,
       createdAt: Date.now(),
+      budget: 4500,
     },
     {
       id: 2,
@@ -54,6 +58,7 @@ const Job = {
       'daily-hours': 1,
       'total-hours': 5,
       createdAt: Date.now(),
+      budget: 4500,
     },
   ],
   controllers: {
@@ -78,6 +83,15 @@ const Job = {
         createdAt: Date.now(),
       });
       return res.redirect('/');
+    },
+    show(req, res) {
+      const jobId = req.params.id;
+      const job = Job.jobs.find((job) => job.id == jobId); // vai encontrar o id na array e trazer ele para mimm se existir e for igual ao do req.params.id
+      if (!job) {
+        return res.send('Trabalho não encontrado!');
+      }
+
+      return res.render('job-edit', { job });
     },
   },
   services: {
@@ -122,15 +136,13 @@ const Job = {
 routes.get('/', Job.controllers.index);
 routes.get('/index.html', Job.controllers.index);
 
-routes.get('/job-edit.html', (req, res) => {
-  return res.render('job-edit');
-});
+routes.get('/job/:id', Job.controllers.show);
 
 routes.get('/job.html', Job.controllers.create);
 // USANDO O METHOD POST
 routes.post('/job.html', Job.controllers.save);
 
 routes.get('/profile.html', Profile.controllers.index);
-routes.post('/salvar1', Profile.controllers.update);
+routes.post('/profile', Profile.controllers.update);
 
 module.exports = routes;

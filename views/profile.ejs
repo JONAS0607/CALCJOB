@@ -40,7 +40,7 @@
         </button>
       </aside>
       <main>
-        <form id="form-profile" method="post" action="salvar1">
+        <form id="form-profile" method="POST" action="/profile">
           <fieldset>
             <legend>Dados do perfil</legend>
             <div class="separator light"></div>
@@ -52,7 +52,7 @@
                   type="text"
                   id="name"
                   name="name"
-                  value=" <%= profile.name %>  "
+                  value="<%= profile.name %>"
                 />
               </div>
 
