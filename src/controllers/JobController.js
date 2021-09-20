@@ -2,9 +2,7 @@ const Job = require("../model/Job");
 const Profile = require("../model/Profile");
 const Utils = require("../utils/jobUtils");
 
-
 module.exports = {
-    
   create(req, res) {
     return res.render("job");
   },
@@ -24,24 +22,14 @@ module.exports = {
   },
   show(req, res) {
     const profile = Profile.get();
-    const jobId = req.params.id;
-    const job = Job.get().find((job) => Number(job.id) === Number(jobId)); // vai encontrar o id na array e trazer ele para mim, se existir e for igual ao do req.params.id
-    if (!job) {
-      return res.send("Trabalho não encontrado!");
-    }
-
+    const job = Utils.findJob(req, res);
     job.budget = Utils.calculateBudget(job, profile["value-hour"]);
 
     return res.render("job-edit", { job });
   },
   update(req, res) {
-    const jobId = req.params.id;
     const jobs = Job.get();
-    const job = jobs.find((job) => Number(job.id) === Number(jobId)); // vai encontrar o id na array e trazer ele para mim, se existir e for igual ao do req.params.id
-    if (!job) {
-      return res.send("Trabalho não encontrado!");
-    }
-
+    const job = Utils.findJob(req, res);
     const updatedJob = {
       ...job,
       name: req.body.name,
@@ -49,16 +37,16 @@ module.exports = {
       "total-hours": req.body["total-hours"],
     };
 
-    const newJobs = jobs.map((job) => {
-      if (Number(job.id) === Number(jobId)) {
-        job = updatedJob;
+    const newJobs = jobs.map((jobM) => {
+      if (Number(jobM.id) === Number(job.id)) {
+        jobM = updatedJob;
       }
-      return job;
+      return jobM;
     });
 
     Job.update(newJobs);
 
-    return res.redirect("/job/" + jobId);
+    return res.redirect("/job/" + job.id);
   },
   delete(req, res) {
     const jobId = req.params.id;
