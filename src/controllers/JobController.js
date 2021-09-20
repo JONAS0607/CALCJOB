@@ -15,8 +15,8 @@ module.exports = {
 
     return res.redirect("/");
   },
-  show(req, res) {
-    const profile = Profile.get();
+  async show(req, res) {
+    const profile = await Profile.get();
     const job = Utils.findJob(req, res);
     job.budget = Utils.calculateBudget(job, profile["value-hour"]);
 

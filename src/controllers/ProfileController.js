@@ -1,9 +1,10 @@
 const Profile = require("../model/Profile");
 module.exports = {
-  index(req, res) {
-    return res.render("profile", { profile: Profile.get() });
+  async index(req, res) {
+    const prof = await Profile.get();
+    return res.render("profile", { profile: prof });
   },
-  update(req, res) {
+  async update(req, res) {
     //req.body para pegar os dados
     const data = req.body;
 
@@ -17,13 +18,14 @@ module.exports = {
     const monthlyTotalHours = weekTotalHours * weeksPerMonth;
     // qual será o valor da minha hora
     const valueHour = data["monthly-budget"] / monthlyTotalHours;
-    Profile.update({
-        ...Profile.get(),
-        ...req.body,
-        "value-hour": valueHour,
-      }) 
+    const prof = await Profile.get();
+    await Profile.update({
+      ...prof,
+      ...req.body,
+      "value-hour": valueHour,
+    });
     // TRAVEI AQUI NO REDIRECIONAMENTO : tinha uma variavel com a nomenclatura errada.
-
-    return res.render("profile", { profile: Profile.get() });
+    const profileUpdated = await Profile.get();
+    return res.render("profile", { profile: profileUpdated });
   },
 };

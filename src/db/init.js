@@ -60,7 +60,7 @@ jobs(
     "Game",
     2,
     10,
-    20-10-2021
+    1617514346018
     );`;
     await db.exec(sqlProfile);
     await db.exec(sqlJobs);

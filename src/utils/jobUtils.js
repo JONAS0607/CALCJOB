@@ -28,8 +28,8 @@ module.exports = {
     const dayDiff = Math.floor(timeDiffInMs / dayInMs);
     return dayDiff;
   },
-  upJob() {
-    const profile = Profile.get();
+  async upJob() {
+    const profile = await Profile.get();
     const job = Job.get();
     const updatedJobs = job.map((job) => {
       //job ajustes
@@ -67,9 +67,9 @@ module.exports = {
 
     return statusCount;
   },
-  freeHours() {
-    const profile = Profile.get();
-    const status = this.upJob();
+  async freeHours() {
+    const profile = await Profile.get();
+    const status = await this.upJob();
     //quantidade de horas que quero trabalhar por dia
     const hoursDay = profile["hours-per-day"];
     // menos os trabalhos em progresso
