@@ -7,6 +7,7 @@ module.exports = {
     const jobUp = Utils.upJob();
     const statusCount = Utils.count();
     const freeHours = Utils.freeHours();
+
     return res.render("index", {
       jobs: jobUp,
       profile: profile,

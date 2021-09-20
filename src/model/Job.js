@@ -25,4 +25,13 @@ module.exports = {
   delete(jobId) {
     jobs = jobs.filter((job) => Number(job.id) !== Number(jobId));
   },
+  create(req, jobs, lastId) {
+    jobs.push({
+      id: lastId + 1,
+      name: req.body.name,
+      "daily-hours": req.body["daily-hours"],
+      "total-hours": req.body["total-hours"],
+      createdAt: Date.now(),
+    });
+  },
 };

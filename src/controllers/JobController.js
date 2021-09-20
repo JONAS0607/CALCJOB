@@ -11,13 +11,8 @@ module.exports = {
     //{ name: 'BARBIERO', 'daily-hours': '1', 'total-hours': '10' }
     const lastId = jobs[jobs.length - 1]?.id || 0;
 
-    jobs.push({
-      id: lastId + 1,
-      name: req.body.name,
-      "daily-hours": req.body["daily-hours"],
-      "total-hours": req.body["total-hours"],
-      createdAt: Date.now(),
-    });
+    Job.create(req, jobs, lastId);
+
     return res.redirect("/");
   },
   show(req, res) {

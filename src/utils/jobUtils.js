@@ -75,11 +75,11 @@ module.exports = {
     // menos os trabalhos em progresso
     let jobTotalHours = 0;
     status.map((status) => {
-      jobTotalHours =
-        status.status === "progress"
-          ? jobTotalHours + status["daily-hours"]
-          : jobTotalHours;
+      if (status.status === "progress") {
+        jobTotalHours += Number(status["daily-hours"]);
+      }
     });
+
     let freeHours = hoursDay - jobTotalHours;
     return freeHours;
   },
