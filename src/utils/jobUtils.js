@@ -26,7 +26,7 @@ module.exports = {
     // um dia em  mili
     const dayInMs = 1000 * 60 * 60 * 24;
     // retornando os dias que faltam para terminar o trabalho
-    const dayDiff = Math.floor(timeDiffInMs / dayInMs);
+    const dayDiff = Math.ceil(timeDiffInMs / dayInMs);
     return dayDiff;
   },
   async upJob() {
