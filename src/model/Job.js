@@ -16,18 +16,16 @@ module.exports = {
       createdAt: job.createdAt,
     }));
   },
-  async update(newJob) {
+  async update(updatedJob, jobId) {
     const db = await Database();
 
-    newJob.map((job) => {
-      db.run(`UPDATE jobs SET      
-      name = "${job.name}",
-      daily_hours = ${job['daily-hours']},
-      total_hours = ${job['total-hours']},
-      createdAt = ${job.createdAt} WHERE id = '${job.id}'
+    await db.run(`UPDATE jobs SET      
+      name = "${updatedJob.name}",
+      daily_hours = ${updatedJob['daily-hours']},
+      total_hours = ${updatedJob['total-hours']}
+      WHERE id = '${jobId}'
       ;
       `);
-    });
 
     await db.close();
   },

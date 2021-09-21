@@ -18,26 +18,16 @@ module.exports = {
     return res.render('job-edit', { job });
   },
   async update(req, res) {
-    const jobs = await Job.get();
-    const job = await Utils.findJob(req, res);
+    const jobId = req.params.id;
     const updatedJob = {
-      ...(await job),
       name: req.body.name,
       'daily-hours': req.body['daily-hours'],
       'total-hours': req.body['total-hours'],
     };
 
-    const newJobs = jobs.map((jobM) => {
-      if (Number(jobM.id) === Number(job.id)) {
-        jobM = updatedJob;
-      }
+    Job.update(updatedJob, jobId);
 
-      return jobM;
-    });
-
-    Job.update(newJobs);
-
-    return res.redirect('/job/' + job.id);
+    return res.redirect('/job/' + jobId);
   },
   delete(req, res) {
     const jobId = req.params.id;
