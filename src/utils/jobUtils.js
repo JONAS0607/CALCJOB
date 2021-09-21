@@ -1,19 +1,20 @@
-const Job = require("../model/Job");
-const Profile = require("../model/Profile");
+const Job = require('../model/Job');
+const Profile = require('../model/Profile');
 
 module.exports = {
-  findJob(req, res) {
+  async findJob(req, res) {
+    const getJob = await Job.get();
     const jobId = req.params.id;
-    const job = Job.get().find((job) => Number(job.id) === Number(jobId)); // vai encontrar o id na array e trazer ele para mim, se existir e for igual ao do req.params.id
+    const job = getJob.find((job) => Number(job.id) === Number(jobId)); // vai encontrar o id na array e trazer ele para mim, se existir e for igual ao do req.params.id
     if (!job) {
-      return res.send("Trabalho não encontrado!");
+      return res.send('Trabalho não encontrado!');
     }
 
     return job;
   },
   remainingDays(job) {
     //total de dias de trabalho
-    const remainingDays = (job["total-hours"] / job["daily-hours"]).toFixed();
+    const remainingDays = (job['total-hours'] / job['daily-hours']).toFixed();
     //dia da criação
     const createdDate = new Date(job.createdAt);
     // dia futuro
@@ -30,30 +31,32 @@ module.exports = {
   },
   async upJob() {
     const profile = await Profile.get();
-    const job = Job.get();
+    const job = await Job.get();
     const updatedJobs = job.map((job) => {
       //job ajustes
 
       //dias que faltam para terminar o trabalho
       const remaining = this.remainingDays(job);
+
       //status do trabalho
-      const status = remaining <= 0 ? "done" : "progress";
+      const status = remaining <= 0 ? 'done' : 'progress';
       //espalhando os objetos da array jobs e adicionando remaining
 
       return {
         ...job,
         remaining,
         status,
-        budget: this.calculateBudget(job, profile["value-hour"]),
+        budget: this.calculateBudget(job, profile['value-hour']),
       };
     });
+
     return updatedJobs;
   },
   calculateBudget: (job, valueHour) => {
-    return valueHour * job["total-hours"];
+    return valueHour * job['total-hours'];
   },
-  count() {
-    const jobs = Job.get();
+  async count() {
+    const jobs = await Job.get();
     let statusCount = {
       progress: 0,
       done: 0,
@@ -61,7 +64,7 @@ module.exports = {
     };
     jobs.map((job) => {
       const remaining = this.remainingDays(job);
-      const status = remaining <= 0 ? "done" : "progress";
+      const status = remaining <= 0 ? 'done' : 'progress';
       statusCount[status] += 1;
     });
 
@@ -71,12 +74,12 @@ module.exports = {
     const profile = await Profile.get();
     const status = await this.upJob();
     //quantidade de horas que quero trabalhar por dia
-    const hoursDay = profile["hours-per-day"];
+    const hoursDay = profile['hours-per-day'];
     // menos os trabalhos em progresso
     let jobTotalHours = 0;
-    status.map((status) => {
-      if (status.status === "progress") {
-        jobTotalHours += Number(status["daily-hours"]);
+    status.map((state) => {
+      if (state.status === 'progress') {
+        jobTotalHours += Number(state['daily-hours']);
       }
     });
 
