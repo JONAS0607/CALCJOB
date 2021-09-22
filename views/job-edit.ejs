@@ -137,10 +137,11 @@
       form.addEventListener('submit',function(e){
         const par = totalHours.value / dailyHours.value;
         console.log(par);
-        if(par%2==0){
-          alert('Horas dedicadas ok!');          
+        
+        if(par%2 == 0 || par % 1 == 0){
+          alert(`Você tem ${par} dias para finalizar o Projeto!`);          
         }else{
-          alert('Digite um valor coerente no campo horas dedicadas por dia!!');
+          alert(`Digite um valor coerente no campo horas dedicadas por dia!! Tempo dedicado não retorana um inteiro ${par}`);
           e.preventDefault();
         }
       })

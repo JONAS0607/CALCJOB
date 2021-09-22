@@ -26,8 +26,11 @@
     <%- include('parts/page-header', {title: "Alterar meu Perfil"}) %>
 
     <div class="container animate-up delay-2">
-      <aside class="card">
-        <img src=" <%= profile.avatar  %>  " alt="Jonas" />
+      <aside
+        style="background-image: url('<%= profile.avatar %>')"
+        class="card"
+      >
+        <img src=" <%= profile.avatar  %>  " alt="<%= profile.name %> " />
         <h2><%= profile.name %></h2>
         <p>
           O valor da sua hora é <br />

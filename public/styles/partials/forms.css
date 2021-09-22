@@ -29,7 +29,6 @@ form .input-group .input-wrapper + .input-wrapper {
 }
 .input-wrapper {
   width: 50%;
-  padding-bottom: 10%;
 }
 
 label {
@@ -38,7 +37,6 @@ label {
   font-family: IBM Plex Sans;
   font-weight: 500;
   color: #787880;
-
   margin-bottom: 1rem;
 }
 

@@ -1,25 +1,26 @@
 #page-profile .page-header ~ .container {
   display: flex;
   flex-direction: column;
-
   text-align: center;
+  margin-bottom: 5%;
 }
 
 aside.card {
   /* display: flex; */
-  background: var(--color-card-background);
+
+  /* background: var(--color-card-background); */
   color: var(--color-card-title);
 
   border: 1px solid #e1e3e6;
   border-radius: 0.313rem;
 
-  /* width: 50%; */
+  width: 100%;
 
-  /* margin-right: 8rem; */
+  margin: 0 auto 1rem;
 
   text-align: center;
 
-  padding: 1rem 1rem;
+  padding: 1rem 2rem 2rem;
 }
 
 aside img {
@@ -30,7 +31,7 @@ aside img {
   width: 11.25rem;
   height: 11.25rem;
 
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 aside h2 {
@@ -39,7 +40,7 @@ aside h2 {
   font-size: 1.75rem;
   line-height: 1.875rem;
 
-  margin-bottom: 3.875rem;
+  margin-bottom: 1.875rem;
 }
 
 aside p {
