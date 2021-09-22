@@ -33,6 +33,7 @@
     <div class="container flex animate-up delay-2">
         <form id="form-job" method="POST" action="/job/<%= job.id %>">
           <fieldset>
+            <legend>COLOCAR O ERRO DE CÁLCULO</legend>
             <legend>Dados do Job</legend>
             <div class="separator light"></div>
 
@@ -55,7 +56,9 @@
                   step="0.1" 
                   id="daily-hours" 
                   name="daily-hours"
-                  value="<%= job['daily-hours'] %>"/>
+                  value="<%= job['daily-hours'] %>"
+                  />
+                  
               </div>
 
               <div class="input-wrapper">
@@ -65,11 +68,15 @@
                   type="number"
                   id="total-hours" 
                   name="total-hours"
-                  value="<%= job['total-hours'] %>" />
-              </div>
+                  value="<%= job['total-hours'] %>" 
+                  />                 
+                 
+              </div>              
             </div>
-          </fieldset>
-    
+           
+
+
+          </fieldset>    
         </form>
       </main>
       <aside class="card">
@@ -95,6 +102,7 @@
         </div>
       </aside>
       
+      
     </div>
     <!-- end container -->
 
@@ -116,11 +124,27 @@
         </footer>
       </div>
       <form 
-        method="post" 
-        action="/job/delete/<%= job.id %>" 
-        id="delete-job"></form>
+      method="post" 
+      action="/job/delete/<%= job.id %>" 
+      id="delete-job"></form>
     </div>
     <!-- end modal-wrapper -->
+    <script>
+      const form = document.getElementById('form-job');
+      const totalHours = document.getElementById('total-hours');
+      const dailyHours = document.getElementById('daily-hours');
+
+      form.addEventListener('submit',function(e){
+        const par = totalHours.value / dailyHours.value;
+        console.log(par);
+        if(par%2==0){
+          alert('Horas dedicadas ok!');          
+        }else{
+          alert('Digite um valor coerente no campo horas dedicadas por dia!!');
+          e.preventDefault();
+        }
+      })
+    </script>
   </body>
 </html>
  
