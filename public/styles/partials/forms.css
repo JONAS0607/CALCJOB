@@ -29,6 +29,7 @@ form .input-group .input-wrapper + .input-wrapper {
 }
 .input-wrapper {
   width: 50%;
+  padding-bottom: 10%;
 }
 
 label {
